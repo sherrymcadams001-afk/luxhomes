@@ -69,7 +69,7 @@ export default function CollectionPage() {
               <div>
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-8 h-px bg-champagne/40" />
-                  <span className="text-champagne text-[10px] tracking-[0.5em] uppercase">
+                  <span className="text-champagne text-[11px] tracking-[0.4em] uppercase">
                     The Collection
                   </span>
                 </div>
@@ -85,7 +85,7 @@ export default function CollectionPage() {
               {/* Filters */}
               <div className="flex items-center gap-3">
                 <div className="flex items-center gap-2">
-                  <SlidersHorizontal size={13} className="text-champagne/50" />
+                  <SlidersHorizontal size={13} className="text-champagne/70" />
                   <select
                     value={locationFilter}
                     onChange={(e) => setLocationFilter(e.target.value)}
@@ -145,6 +145,8 @@ export default function CollectionPage() {
                   <div className="relative aspect-[4/3] overflow-hidden">
                     <motion.div
                       className="absolute inset-0 bg-cover bg-center"
+                      role="img"
+                      aria-label={`Photo of ${property.title}`}
                       style={{
                         backgroundImage: `url(${property.images[0]})`,
                       }}
@@ -155,7 +157,7 @@ export default function CollectionPage() {
 
                     <div className="absolute top-4 left-4 flex items-center gap-1.5 px-3 py-1.5 bg-void/60 backdrop-blur-md border border-white/[0.08]">
                       <MapPin size={10} className="text-champagne" />
-                      <span className="text-[9px] tracking-[0.2em] uppercase text-crisp/80">
+                      <span className="text-[10px] tracking-[0.2em] uppercase text-crisp/90">
                         {property.location}
                       </span>
                     </div>
@@ -164,7 +166,7 @@ export default function CollectionPage() {
                       <div className="text-champagne-light text-lg font-display tabular-nums">
                         {formatZAR(property.price)}
                       </div>
-                      <div className="text-silver/60 text-[9px] tracking-wider uppercase">
+                      <div className="text-silver/70 text-[10px] tracking-wider uppercase">
                         per night
                       </div>
                     </div>
@@ -181,19 +183,19 @@ export default function CollectionPage() {
 
                     <div className="flex items-center gap-6 pt-4 border-t border-white/[0.06]">
                       <div className="flex items-center gap-1.5">
-                        <Bed size={13} className="text-champagne/40" />
+                        <Bed size={13} className="text-champagne/60" />
                         <span className="text-silver-light text-xs tabular-nums">
                           {property.bedrooms}
                         </span>
                       </div>
                       <div className="flex items-center gap-1.5">
-                        <Bath size={13} className="text-champagne/40" />
+                        <Bath size={13} className="text-champagne/60" />
                         <span className="text-silver-light text-xs tabular-nums">
                           {property.bathrooms}
                         </span>
                       </div>
                       <div className="flex items-center gap-1.5">
-                        <Maximize size={13} className="text-champagne/40" />
+                        <Maximize size={13} className="text-champagne/60" />
                         <span className="text-silver-light text-xs tabular-nums">
                           {property.size}m²
                         </span>

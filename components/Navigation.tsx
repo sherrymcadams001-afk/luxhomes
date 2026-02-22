@@ -137,7 +137,7 @@ export default function Navigation() {
                   <span className="text-crisp text-[15px] font-display tracking-[0.15em] leading-none">
                     ENVY
                   </span>
-                  <span className="text-silver text-[9px] tracking-[0.35em] uppercase leading-none mt-0.5">
+                  <span className="text-silver text-[10px] tracking-[0.3em] uppercase leading-none mt-0.5">
                     Luxury Homes
                   </span>
                 </div>
@@ -173,7 +173,7 @@ export default function Navigation() {
               <div className="flex items-center gap-4">
                 <Link
                   href="/contact"
-                  className="hidden md:inline-flex lux-button-secondary text-[10px] py-2 px-5"
+                  className="hidden md:inline-flex lux-button-secondary text-[11px] py-2 px-5"
                 >
                   Enquire Now
                 </Link>
@@ -216,7 +216,7 @@ export default function Navigation() {
               className="absolute right-0 top-0 h-full w-[min(320px,85vw)] bg-navy/95 border-l border-champagne/10 flex flex-col"
             >
               <div className="flex items-center justify-between p-6 border-b border-white/[0.06]">
-                <span className="text-champagne/60 text-[10px] tracking-[0.4em] uppercase">
+                <span className="text-champagne/70 text-[11px] tracking-[0.3em] uppercase">
                   Navigation
                 </span>
                 <button

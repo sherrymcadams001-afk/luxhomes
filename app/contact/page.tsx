@@ -57,7 +57,7 @@ export default function ContactPage() {
           </Link>
           <div className="flex items-center gap-3 mb-4">
             <div className="w-8 h-px bg-champagne/40" />
-            <span className="text-champagne text-[10px] tracking-[0.5em] uppercase">
+              <span className="text-champagne text-[11px] tracking-[0.4em] uppercase">
               Get in Touch
             </span>
           </div>
@@ -85,9 +85,11 @@ export default function ContactPage() {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-[10px] tracking-[0.3em] uppercase text-champagne/70 mb-2">
+                  <label htmlFor="contact-name" className="block text-[11px] tracking-[0.25em] uppercase text-champagne/80 mb-2">
+                    Name
                   </label>
                   <input
+                    id="contact-name"
                     type="text"
                     required
                     value={form.name}
@@ -99,10 +101,11 @@ export default function ContactPage() {
                   />
                 </div>
                 <div>
-                  <label className="block text-[10px] tracking-[0.3em] uppercase text-champagne/70 mb-2">
+                  <label htmlFor="contact-email" className="block text-[11px] tracking-[0.25em] uppercase text-champagne/80 mb-2">
                     Email
                   </label>
                   <input
+                    id="contact-email"
                     type="email"
                     required
                     value={form.email}
@@ -117,10 +120,11 @@ export default function ContactPage() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-[10px] tracking-[0.3em] uppercase text-champagne/70 mb-2">
+                  <label htmlFor="contact-phone" className="block text-[11px] tracking-[0.25em] uppercase text-champagne/80 mb-2">
                     Phone (optional)
                   </label>
                   <input
+                    id="contact-phone"
                     type="tel"
                     value={form.phone}
                     onChange={(e) =>
@@ -131,10 +135,11 @@ export default function ContactPage() {
                   />
                 </div>
                 <div>
-                  <label className="block text-[10px] tracking-[0.3em] uppercase text-champagne/70 mb-2">
+                  <label htmlFor="contact-interest" className="block text-[11px] tracking-[0.25em] uppercase text-champagne/80 mb-2">
                     Property of Interest
                   </label>
                   <select
+                    id="contact-interest"
                     value={form.interest}
                     onChange={(e) =>
                       setForm({ ...form, interest: e.target.value })
@@ -166,10 +171,11 @@ export default function ContactPage() {
               </div>
 
               <div>
-                <label className="block text-[10px] tracking-[0.3em] uppercase text-champagne/70 mb-2">
+                <label htmlFor="contact-message" className="block text-[11px] tracking-[0.25em] uppercase text-champagne/80 mb-2">
                   Message
                 </label>
                 <textarea
+                  id="contact-message"
                   required
                   rows={5}
                   value={form.message}
@@ -227,7 +233,7 @@ export default function ContactPage() {
                     <Phone size={14} className="text-champagne/60" />
                   </div>
                   <div>
-                    <div className="text-[10px] tracking-[0.3em] uppercase text-champagne/50 mb-1">
+                    <div className="text-[11px] tracking-[0.25em] uppercase text-champagne/70 mb-1">
                       Phone
                     </div>
                     <div className="text-silver-bright text-sm">
@@ -240,7 +246,7 @@ export default function ContactPage() {
                     <Mail size={14} className="text-champagne/60" />
                   </div>
                   <div>
-                    <div className="text-[10px] tracking-[0.3em] uppercase text-champagne/50 mb-1">
+                    <div className="text-[11px] tracking-[0.25em] uppercase text-champagne/70 mb-1">
                       Email
                     </div>
                     <div className="text-silver-bright text-sm">
@@ -253,7 +259,7 @@ export default function ContactPage() {
                     <MapPin size={14} className="text-champagne/60" />
                   </div>
                   <div>
-                    <div className="text-[10px] tracking-[0.3em] uppercase text-champagne/50 mb-1">
+                    <div className="text-[11px] tracking-[0.25em] uppercase text-champagne/70 mb-1">
                       Office
                     </div>
                     <div className="text-silver-bright text-sm leading-relaxed">

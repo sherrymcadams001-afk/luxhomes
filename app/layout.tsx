@@ -143,7 +143,7 @@ function Footer() {
               </p>
             </div>
             <div>
-              <h5 className="text-champagne text-[10px] tracking-[0.3em] uppercase mb-4">
+              <h5 className="text-champagne text-[11px] tracking-[0.25em] uppercase mb-4">
                 Contact
               </h5>
               <div className="space-y-2 text-sm text-silver-light">
@@ -153,7 +153,7 @@ function Footer() {
               </div>
             </div>
             <div>
-              <h5 className="text-champagne text-[10px] tracking-[0.3em] uppercase mb-4">
+              <h5 className="text-champagne text-[11px] tracking-[0.25em] uppercase mb-4">
                 Legal
               </h5>
               <div className="space-y-2 text-sm text-silver-light">
@@ -170,7 +170,7 @@ function Footer() {
             <p className="text-[11px] text-silver tracking-widest">
               © 2026 ENVY LUXURY HOMES. ALL RIGHTS RESERVED.
             </p>
-            <p className="text-[10px] text-champagne/30 tracking-widest">
+            <p className="text-[11px] text-champagne/40 tracking-widest">
               TRUST · TRADITION · EXCELLENCE
             </p>
           </div>

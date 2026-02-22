@@ -204,19 +204,19 @@ export default function PropertyDetailPage() {
 
                 <div className="flex flex-wrap items-center gap-4 sm:gap-8 pb-6 mb-6 border-b border-white/[0.06]">
                   <div className="flex items-center gap-2">
-                    <Bed size={15} className="text-champagne/40" />
+                    <Bed size={15} className="text-champagne/60" />
                     <span className="text-silver-light text-sm tabular-nums">
                       {property.bedrooms} Bedrooms
                     </span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Bath size={15} className="text-champagne/40" />
+                    <Bath size={15} className="text-champagne/60" />
                     <span className="text-silver-light text-sm tabular-nums">
                       {property.bathrooms} Bathrooms
                     </span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Maximize size={15} className="text-champagne/40" />
+                    <Maximize size={15} className="text-champagne/60" />
                     <span className="text-silver-light text-sm tabular-nums">
                       {property.size}m²
                     </span>
@@ -229,7 +229,7 @@ export default function PropertyDetailPage() {
 
                 {/* Amenities */}
                 <div className="mt-10 pt-8 border-t border-white/[0.06]">
-                  <h3 className="text-[10px] tracking-[0.3em] uppercase text-champagne/70 mb-6">
+                  <h3 className="text-[11px] tracking-[0.25em] uppercase text-champagne/80 mb-6">
                     Estate Amenities
                   </h3>
                   <div className="grid grid-cols-2 gap-3">
@@ -247,7 +247,7 @@ export default function PropertyDetailPage() {
                         key={amenity}
                         className="flex items-center gap-2 py-2"
                       >
-                        <Star size={10} className="text-champagne/40" />
+                        <Star size={10} className="text-champagne/60" />
                         <span className="text-silver text-sm">{amenity}</span>
                       </div>
                     ))}
@@ -270,7 +270,7 @@ export default function PropertyDetailPage() {
                     <div className="text-champagne-light text-2xl font-display tabular-nums">
                       {formatZAR(property.price)}
                     </div>
-                    <div className="text-silver/60 text-[10px] tracking-[0.2em] uppercase mt-1">
+                    <div className="text-silver/70 text-[11px] tracking-[0.2em] uppercase mt-1">
                       per night
                     </div>
                   </div>
@@ -288,7 +288,7 @@ export default function PropertyDetailPage() {
                 {/* Dates */}
                 <div className="space-y-4 mb-6">
                   <div>
-                    <label className="lux-label">
+                    <label htmlFor="check-in" className="lux-label">
                       <Calendar
                         size={10}
                         className="inline mr-1 -mt-0.5"
@@ -296,6 +296,7 @@ export default function PropertyDetailPage() {
                       Check-in
                     </label>
                     <input
+                      id="check-in"
                       type="date"
                       value={checkIn}
                       min={todayStr}
@@ -304,7 +305,7 @@ export default function PropertyDetailPage() {
                     />
                   </div>
                   <div>
-                    <label className="lux-label">
+                    <label htmlFor="check-out" className="lux-label">
                       <Calendar
                         size={10}
                         className="inline mr-1 -mt-0.5"
@@ -312,6 +313,7 @@ export default function PropertyDetailPage() {
                       Check-out
                     </label>
                     <input
+                      id="check-out"
                       type="date"
                       value={checkOut}
                       min={checkIn || todayStr}
@@ -367,10 +369,12 @@ export default function PropertyDetailPage() {
 
                 {/* Guest Details */}
                 <div className="space-y-4 mb-6">
-                  <div className="text-[10px] tracking-[0.3em] uppercase text-champagne/70 mt-4">
+                  <div className="text-[11px] tracking-[0.25em] uppercase text-champagne/80 mt-4">
                     Guest Details
                   </div>
+                  <label htmlFor="guest-name" className="sr-only">Full Name</label>
                   <input
+                    id="guest-name"
                     type="text"
                     placeholder="Full Name"
                     value={clientDetails.name}
@@ -379,7 +383,9 @@ export default function PropertyDetailPage() {
                     }
                     className="lux-input"
                   />
+                  <label htmlFor="guest-email" className="sr-only">Email Address</label>
                   <input
+                    id="guest-email"
                     type="email"
                     placeholder="Email Address"
                     value={clientDetails.email}
@@ -391,7 +397,9 @@ export default function PropertyDetailPage() {
                     }
                     className="lux-input"
                   />
+                  <label htmlFor="guest-phone" className="sr-only">Phone Number</label>
                   <input
+                    id="guest-phone"
                     type="tel"
                     placeholder="Phone Number"
                     value={clientDetails.phone}
@@ -420,7 +428,7 @@ export default function PropertyDetailPage() {
                   Reserve Estate
                 </button>
 
-                <p className="text-silver/50 text-[10px] text-center mt-4 leading-relaxed">
+                <p className="text-silver/60 text-[11px] text-center mt-4 leading-relaxed">
                   Secure reservation. You will be directed to our
                   <br />
                   payment gateway to complete your booking.

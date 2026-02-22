@@ -177,7 +177,7 @@ export default function CheckoutPage() {
           <div className="text-center mb-12">
             <div className="flex items-center justify-center gap-3 mb-4">
               <Shield size={16} className="text-champagne/60" />
-              <span className="text-champagne text-[10px] tracking-[0.5em] uppercase">
+              <span className="text-champagne text-[11px] tracking-[0.4em] uppercase">
                 Secure Checkout
               </span>
               <Shield size={16} className="text-champagne/60" />
@@ -192,7 +192,7 @@ export default function CheckoutPage() {
             <div className="space-y-6">
               {/* Property Card */}
               <div className="lux-card p-6">
-                <div className="text-[10px] tracking-[0.3em] uppercase text-champagne/70 mb-4">
+                <div className="text-[11px] tracking-[0.25em] uppercase text-champagne/80 mb-4">
                   Estate
                 </div>
                 <h2 className="text-xl font-display text-crisp mb-2">
@@ -201,7 +201,7 @@ export default function CheckoutPage() {
 
                 <div className="grid grid-cols-2 gap-4 mt-6 pt-4 border-t border-white/[0.06]">
                   <div>
-                    <div className="text-[9px] tracking-[0.3em] uppercase text-champagne/50 mb-1">
+                    <div className="text-[10px] tracking-[0.25em] uppercase text-champagne/70 mb-1">
                       Check-in
                     </div>
                     <div className="text-silver-light text-sm tabular-nums">
@@ -217,7 +217,7 @@ export default function CheckoutPage() {
                     </div>
                   </div>
                   <div>
-                    <div className="text-[9px] tracking-[0.3em] uppercase text-champagne/50 mb-1">
+                    <div className="text-[10px] tracking-[0.25em] uppercase text-champagne/70 mb-1">
                       Check-out
                     </div>
                     <div className="text-silver-light text-sm tabular-nums">
@@ -235,7 +235,7 @@ export default function CheckoutPage() {
                 </div>
 
                 <div className="mt-4 pt-4 border-t border-white/[0.06]">
-                  <div className="text-[9px] tracking-[0.3em] uppercase text-champagne/50 mb-1">
+                  <div className="text-[10px] tracking-[0.25em] uppercase text-champagne/70 mb-1">
                     Duration
                   </div>
                   <div className="text-silver-light text-sm tabular-nums">
@@ -247,7 +247,7 @@ export default function CheckoutPage() {
 
               {/* Guest Details */}
               <div className="lux-card p-6">
-                <div className="text-[10px] tracking-[0.3em] uppercase text-champagne/70 mb-4">
+                <div className="text-[11px] tracking-[0.25em] uppercase text-champagne/80 mb-4">
                   Guest Details
                 </div>
                 <div className="space-y-3">
@@ -290,7 +290,7 @@ export default function CheckoutPage() {
               <div className="lux-card p-6">
                 <div className="flex items-center gap-2 mb-6">
                   <CreditCard size={14} className="text-champagne/60" />
-                  <span className="text-[10px] tracking-[0.3em] uppercase text-champagne/70">
+                  <span className="text-[10px] tracking-[0.25em] uppercase text-champagne/80">
                     Payment
                   </span>
                 </div>
@@ -329,7 +329,7 @@ export default function CheckoutPage() {
                     </span>
                   </div>
                   <div className="text-right">
-                    <span className="text-silver/40 text-[10px] tracking-wider">
+                    <span className="text-silver/50 text-[10px] tracking-wider">
                       ZAR (South African Rand)
                     </span>
                   </div>
@@ -428,15 +428,15 @@ export default function CheckoutPage() {
                 </form>
 
                 <div className="flex items-center justify-center gap-4 mt-6 pt-4 border-t border-white/[0.06]">
-                  <span className="text-[9px] tracking-[0.2em] uppercase text-silver/40">
+                  <span className="text-[10px] tracking-[0.2em] uppercase text-silver/50">
                     256-bit SSL
                   </span>
-                  <span className="text-silver/20">·</span>
-                  <span className="text-[9px] tracking-[0.2em] uppercase text-silver/40">
+                  <span className="text-silver/30">·</span>
+                  <span className="text-[10px] tracking-[0.2em] uppercase text-silver/50">
                     PCI DSS
                   </span>
-                  <span className="text-silver/20">·</span>
-                  <span className="text-[9px] tracking-[0.2em] uppercase text-silver/40">
+                  <span className="text-silver/30">·</span>
+                  <span className="text-[10px] tracking-[0.2em] uppercase text-silver/50">
                     PayFast
                   </span>
                 </div>

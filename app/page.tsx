@@ -72,7 +72,7 @@ export default function HomePage() {
   return (
     <>
       {/* ─── Hero Section with Video ───────────────────────────── */}
-      <section className="relative h-[100dvh] -mt-[72px] flex items-center justify-center overflow-hidden">
+      <section className="relative h-[100dvh] -mt-[72px] flex items-center justify-center overflow-hidden" aria-label="Hero">
         {/* Hero Background — Video or Image (admin-controlled) */}
         <div className="absolute inset-0 bg-void">
           {isVideo ? (
@@ -104,10 +104,10 @@ export default function HomePage() {
             />
           )}
 
-          {/* Layered cinematic overlays */}
-          <div className="absolute inset-0 bg-gradient-to-b from-void/70 via-navy/20 to-void" />
-          <div className="absolute inset-0 bg-gradient-to-r from-void/80 via-navy/10 to-transparent" />
-          <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-void to-transparent" />
+          {/* Layered cinematic overlays — light enough to preserve video clarity */}
+          <div className="absolute inset-0 bg-gradient-to-b from-void/50 via-transparent to-void/90" />
+          <div className="absolute inset-0 bg-gradient-to-r from-void/60 via-transparent to-transparent" />
+          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-void to-transparent" />
 
           {/* Warm vignette */}
           <div
@@ -130,7 +130,7 @@ export default function HomePage() {
             {/* Accent rule + eyebrow */}
             <div className="flex items-center gap-4 mb-8">
               <div className="w-12 h-px bg-gradient-to-r from-champagne to-champagne/20" />
-              <span className="text-champagne-light text-[10px] tracking-[0.5em] uppercase">
+              <span className="text-champagne-light text-[11px] tracking-[0.4em] uppercase">
                 Est. 2024 — South Africa
               </span>
             </div>
@@ -176,14 +176,14 @@ export default function HomePage() {
           transition={{ delay: 1.5, duration: 1 }}
           className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
         >
-          <span className="text-champagne/30 text-[9px] tracking-[0.4em] uppercase">
+          <span className="text-champagne/50 text-[11px] tracking-[0.3em] uppercase">
             Scroll
           </span>
           <motion.div
             animate={{ y: [0, 6, 0] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           >
-            <ChevronDown size={16} className="text-champagne/30" />
+            <ChevronDown size={16} className="text-champagne/50" />
           </motion.div>
         </motion.div>
       </section>
@@ -262,7 +262,7 @@ export default function HomePage() {
             <div>
               <div className="flex items-center gap-4 mb-5">
                 <div className="w-8 h-px bg-champagne/40" />
-                <span className="text-champagne text-[10px] tracking-[0.5em] uppercase">
+                <span className="text-champagne text-[11px] tracking-[0.4em] uppercase">
                   Featured
                 </span>
               </div>
@@ -297,6 +297,8 @@ export default function HomePage() {
                     <div className="relative aspect-[4/3] overflow-hidden">
                       <motion.div
                         className="absolute inset-0 bg-cover bg-center"
+                        role="img"
+                        aria-label={`Photo of ${property.title}`}
                         style={{
                           backgroundImage: `url(${property.images[0]})`,
                         }}
@@ -310,7 +312,7 @@ export default function HomePage() {
                       {/* Location badge */}
                       <div className="absolute top-4 left-4 flex items-center gap-1.5 px-3 py-1.5 bg-void/60 backdrop-blur-md border border-white/[0.08]">
                         <MapPin size={10} className="text-champagne" />
-                        <span className="text-[9px] tracking-[0.2em] uppercase text-crisp/80">
+                        <span className="text-[10px] tracking-[0.15em] uppercase text-crisp/90">
                           {property.location}
                         </span>
                       </div>
@@ -320,7 +322,7 @@ export default function HomePage() {
                         <div className="text-champagne-light text-lg font-display tabular-nums">
                           {formatZAR(property.price)}
                         </div>
-                        <div className="text-silver/60 text-[9px] tracking-wider uppercase">
+                        <div className="text-silver/70 text-[10px] tracking-wider uppercase">
                           per night
                         </div>
                       </div>
@@ -332,19 +334,19 @@ export default function HomePage() {
                       </h3>
                       <div className="flex items-center gap-6 pt-4 border-t border-white/[0.06]">
                         <div className="flex items-center gap-1.5">
-                          <Bed size={13} className="text-champagne/40" />
+                          <Bed size={13} className="text-champagne/60" />
                           <span className="text-silver-light text-xs tabular-nums">
                             {property.bedrooms}
                           </span>
                         </div>
                         <div className="flex items-center gap-1.5">
-                          <Bath size={13} className="text-champagne/40" />
+                          <Bath size={13} className="text-champagne/60" />
                           <span className="text-silver-light text-xs tabular-nums">
                             {property.bathrooms}
                           </span>
                         </div>
                         <div className="flex items-center gap-1.5">
-                          <Maximize size={13} className="text-champagne/40" />
+                          <Maximize size={13} className="text-champagne/60" />
                           <span className="text-silver-light text-xs tabular-nums">
                             {property.size}m²
                           </span>
