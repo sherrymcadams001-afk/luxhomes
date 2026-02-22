@@ -1,0 +1,286 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
+
+@layer base {
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    color-scheme: dark;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    overflow-x: hidden;
+  }
+
+  body {
+    @apply bg-void text-crisp font-sans;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  ::selection {
+    @apply bg-champagne/20 text-champagne-light;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-void;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-champagne/15 rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-champagne/30;
+  }
+
+  /* Tabular nums for pricing */
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Focus-visible for keyboard a11y */
+  *:focus-visible {
+    outline: 2px solid rgba(201, 169, 110, 0.5);
+    outline-offset: 2px;
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  /* ── Subtle film grain overlay ──────────────── */
+  .grain-overlay::before {
+    content: "";
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    right: -50%;
+    bottom: -50%;
+    width: 200%;
+    height: 200%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    animation: grain 8s steps(10) infinite;
+  }
+
+  /* Disable grain on mobile for performance */
+  @media (max-width: 768px) {
+    .grain-overlay::before {
+      display: none;
+    }
+  }
+
+  /* ── Border utilities ───────────────────────── */
+  .lux-border {
+    @apply border border-white/[0.08];
+  }
+
+  .lux-border-warm {
+    border: 1px solid rgba(201, 169, 110, 0.1);
+  }
+
+  /* ── Card system with luma depth & elevation ─── */
+  .lux-elevation {
+    background: linear-gradient(
+      168deg,
+      rgba(201, 169, 110, 0.04) 0%,
+      rgba(28, 43, 74, 0.25) 30%,
+      rgba(136, 153, 170, 0.02) 60%,
+      transparent 100%
+    );
+  }
+
+  .lux-card {
+    @apply lux-elevation backdrop-blur-md;
+    border: 1px solid rgba(201, 169, 110, 0.08);
+    background-color: rgba(18, 32, 64, 0.55);
+    box-shadow:
+      0 1px 3px rgba(0, 0, 0, 0.35),
+      0 4px 20px rgba(0, 0, 0, 0.2),
+      0 0 0 1px rgba(255, 255, 255, 0.02) inset,
+      inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .lux-card:hover {
+    border-color: rgba(201, 169, 110, 0.18);
+    background-color: rgba(18, 32, 64, 0.65);
+    box-shadow:
+      0 2px 6px rgba(0, 0, 0, 0.35),
+      0 8px 40px rgba(0, 0, 0, 0.25),
+      0 0 80px rgba(201, 169, 110, 0.04),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    transform: translateY(-1px);
+  }
+
+  /* Disable hover lift on touch devices */
+  @media (hover: none) {
+    .lux-card:hover {
+      transform: none;
+    }
+    .lux-button-primary:hover,
+    .lux-button-secondary:hover {
+      transform: none;
+    }
+  }
+
+  /* ── Inputs ─────────────────────────────────── */
+  .lux-input {
+    @apply w-full px-4 py-3 text-crisp placeholder:text-silver/50 
+    focus:outline-none transition-all duration-300;
+    font-size: 16px; /* prevents iOS zoom on focus */
+    background: rgba(14, 22, 42, 0.8);
+    border: 1px solid rgba(136, 153, 170, 0.12);
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.15);
+    border-radius: 0; /* reset iOS Safari rounding */
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  .lux-input:focus {
+    border-color: rgba(201, 169, 110, 0.3);
+    box-shadow: 0 0 0 3px rgba(201, 169, 110, 0.06), inset 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  /* ── Select styling for dark ────────────────── */
+  .lux-input option {
+    background: #0F1B30;
+    color: #F8FAFC;
+  }
+
+  /* ── Buttons ────────────────────────────────── */
+  .lux-button-primary {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-3.5 
+    text-[11px] font-semibold tracking-[0.25em] uppercase
+    active:scale-[0.98] transition-all duration-300
+    disabled:opacity-30 disabled:cursor-not-allowed;
+    background: linear-gradient(135deg, #C9A96E 0%, #DFC49A 50%, #C9A96E 100%);
+    background-size: 200% 100%;
+    color: #070D18;
+    box-shadow: 0 2px 16px rgba(201, 169, 110, 0.2), 0 0 0 1px rgba(201, 169, 110, 0.1);
+    min-height: 48px; /* touch target */
+    touch-action: manipulation;
+  }
+  .lux-button-primary:hover {
+    background-position: 100% 0;
+    box-shadow: 0 4px 24px rgba(201, 169, 110, 0.35), 0 0 0 1px rgba(201, 169, 110, 0.2);
+    transform: translateY(-1px);
+  }
+
+  .lux-button-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 
+    text-[11px] tracking-[0.2em] uppercase transition-all duration-500;
+    border: 1px solid rgba(201, 169, 110, 0.25);
+    color: #DFC49A;
+    box-shadow: 0 0 0 0 rgba(201, 169, 110, 0);
+    min-height: 44px; /* touch target */
+    touch-action: manipulation;
+  }
+  .lux-button-secondary:hover {
+    border-color: rgba(201, 169, 110, 0.5);
+    background: rgba(201, 169, 110, 0.06);
+    color: #F8FAFC;
+    box-shadow: 0 0 24px rgba(201, 169, 110, 0.06);
+    transform: translateY(-1px);
+  }
+
+  /* ── Labels ─────────────────────────────────── */
+  .lux-label {
+    @apply text-[10px] tracking-[0.3em] uppercase text-silver mb-2 block;
+  }
+
+  /* ── Dividers ───────────────────────────────── */
+  .lux-divider {
+    @apply border-t border-white/[0.06];
+    background: linear-gradient(90deg, transparent, rgba(201,169,110,0.08), transparent);
+    height: 1px;
+  }
+
+  /* ── Warm glow spot ─────────────────────────── */
+  .lux-glow {
+    position: relative;
+  }
+  .lux-glow::after {
+    content: "";
+    position: absolute;
+    top: -40%;
+    left: -20%;
+    width: 140%;
+    height: 140%;
+    background: radial-gradient(ellipse, rgba(201,169,110,0.05) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── Luma elevation surface ─────────────────── */
+  .lux-surface {
+    background: linear-gradient(180deg, rgba(18, 32, 64, 0.3) 0%, rgba(7, 13, 24, 0) 100%);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.03);
+  }
+
+  /* ── Floating section with elevation ────────── */
+  .lux-section-elevated {
+    background: linear-gradient(168deg, rgba(28,43,74,0.2) 0%, rgba(18,32,64,0.1) 50%, transparent 100%);
+    box-shadow: 0 -1px 0 rgba(201,169,110,0.06), 0 1px 0 rgba(201,169,110,0.06);
+  }
+
+  /* ── Frosted glass panel ────────────────────── */
+  .lux-frosted {
+    @apply backdrop-blur-xl;
+    background: rgba(18, 32, 64, 0.4);
+    border: 1px solid rgba(255,255,255,0.06);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.04);
+  }
+}
+
+@layer utilities {
+  .text-gradient-gold {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #A68B4B, #DFC49A, #C9A96E);
+  }
+
+  .text-gradient-silver {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #8899AA, #E2E8F0, #B8C4D0);
+  }
+
+  /* Premium shimmer line accent */
+  .shimmer-line {
+    position: relative;
+    overflow: hidden;
+  }
+  .shimmer-line::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(201, 169, 110, 0.15),
+      transparent
+    );
+    animation: shimmer 3s linear infinite;
+  }
+}

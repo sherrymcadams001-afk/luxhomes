@@ -1,0 +1,77 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Install Dependencies",
+			"type": "shell",
+			"command": "npm install",
+			"isBackground": false
+		},
+		{
+			"label": "npm install",
+			"type": "shell",
+			"command": "npm install",
+			"isBackground": false
+		},
+		{
+			"label": "npm-install",
+			"type": "shell",
+			"command": "npm install",
+			"isBackground": false
+		},
+		{
+			"label": "npm-install",
+			"type": "shell",
+			"command": "cd c:\\Users\\Ghost\\Downloads\\ELH && npm install",
+			"isBackground": false
+		},
+		{
+			"label": "ENVY Dev Server",
+			"type": "shell",
+			"command": "npm install && npm run dev",
+			"isBackground": true,
+			"problemMatcher": [
+				"$tsc"
+			]
+		},
+		{
+			"label": "npm-install",
+			"type": "shell",
+			"command": "npm install",
+			"isBackground": false
+		},
+		{
+			"label": "envy-dev",
+			"type": "shell",
+			"command": "npm install && npm run dev",
+			"isBackground": true,
+			"problemMatcher": [
+				"$tsc"
+			]
+		},
+		{
+			"label": "Wrangler Logout",
+			"type": "shell",
+			"command": "npx wrangler logout",
+			"isBackground": false
+		},
+		{
+			"label": "wrangler-logout",
+			"type": "shell",
+			"command": "npx wrangler logout && echo LOGOUT_DONE",
+			"isBackground": false
+		},
+		{
+			"label": "move-vid-to-public",
+			"type": "shell",
+			"command": "if (!(Test-Path public)) { mkdir public }; Move-Item -Force vid.mp4 public/vid.mp4",
+			"isBackground": false
+		},
+		{
+			"label": "move-video",
+			"type": "shell",
+			"command": "if (!(Test-Path public)) { New-Item -ItemType Directory -Path public | Out-Null }; if (Test-Path vid.mp4) { Move-Item -Force vid.mp4 public/vid.mp4; Write-Host 'Moved vid.mp4 to public/' } else { Write-Host 'vid.mp4 not found at root' }; Write-Host 'DONE'",
+			"isBackground": false
+		}
+	]
+}
