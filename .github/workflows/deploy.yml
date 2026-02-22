@@ -26,7 +26,7 @@ jobs:
         run: npm ci --legacy-peer-deps
 
       - name: Build with @cloudflare/next-on-pages
-        run: npx @cloudflare/next-on-pages
+        run: npm run pages:build
         env:
           NODE_ENV: production
 
