@@ -142,9 +142,8 @@ export default function HomePage() {
             </h1>
 
             <p className="text-silver-light text-lg md:text-xl font-light leading-relaxed max-w-lg mb-12">
-              South Africa&apos;s most coveted addresses. Curated estates in
-              Clifton, Camps Bay &amp; Sandton — where architecture ascends to
-              art.
+              Handpicked residences across Clifton, Camps Bay &amp;
+              Sandton — where every detail has been considered.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
@@ -190,17 +189,13 @@ export default function HomePage() {
       </section>
 
       {/* ─── Trust Pillars ─────────────────────────────────────── */}
-      <section className="relative border-b lux-border-warm lux-section-elevated bg-navy/80">
-        {/* Seamless top blend from hero */}
-        <div
-          className="absolute inset-x-0 top-0 h-16 pointer-events-none"
-          style={{ background: "linear-gradient(to bottom, #070D18, transparent)" }}
-        />
+      <section className="relative border-b lux-border-warm bg-void">
+        {/* Warm ambient glow */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              "radial-gradient(ellipse at 50% 0%, rgba(201,169,110,0.04) 0%, transparent 50%)",
+              "radial-gradient(ellipse at 50% 50%, rgba(201,169,110,0.03) 0%, transparent 60%)",
           }}
         />
         <div className="relative max-w-[1440px] mx-auto px-6 lg:px-12">
@@ -251,7 +246,7 @@ export default function HomePage() {
       </section>
 
       {/* ─── Featured Estates ──────────────────────────────────── */}
-      <section className="relative py-28 lg:py-36">
+      <section className="relative py-20 lg:py-28">
         {/* Background ambient */}
         <div className="absolute inset-0 bg-radial-warm pointer-events-none" />
         <div className="absolute inset-0 bg-radial-cool pointer-events-none" />

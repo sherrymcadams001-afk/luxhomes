@@ -17,7 +17,8 @@ import {
 } from "lucide-react";
 
 const NAV_LINKS = [
-  { href: "/", label: "Showroom" },
+  { href: "/", label: "Home" },
+  { href: "/collection", label: "Collection" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -169,13 +170,12 @@ export default function Navigation() {
                 })}
               </nav>
 
-              {/* CTA + Mobile Toggle */}
               <div className="flex items-center gap-4">
                 <Link
-                  href="/collection"
+                  href="/contact"
                   className="hidden md:inline-flex lux-button-secondary text-[10px] py-2 px-5"
                 >
-                  View Collection
+                  Enquire Now
                 </Link>
                 <button
                   onClick={() => setMobileOpen(!mobileOpen)}
