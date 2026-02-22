@@ -34,7 +34,7 @@ All state is managed via React Context and persisted to `localStorage` (key: `en
 
 ## Admin Access
 
-Click the ENVY logo **5 times** to navigate to `/admin`, or go directly to `/admin`. Enter PIN `0000`.
+Click the ENVY logo **4 times** to navigate to `/admin`, or go directly to `/admin`. Enter PIN `2727`.
 
 ## Deployment
 

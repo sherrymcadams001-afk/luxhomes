@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { StoreProvider } from "@/lib/store";
 import Navigation from "@/components/Navigation";
+import { Diamond } from "lucide-react";
 
 export const runtime = "edge";
 
@@ -77,8 +78,11 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
+      { url: "/favicon.ico", sizes: "16x16", type: "image/x-icon" },
+      { url: "/icon", type: "image/png", sizes: "32x32" },
       { url: "/icon.svg", type: "image/svg+xml" },
     ],
+    shortcut: "/favicon.ico",
     apple: "/apple-icon",
   },
   manifest: "/manifest.webmanifest",
@@ -134,9 +138,12 @@ function Footer() {
         <div className="max-w-[1440px] mx-auto px-6 lg:px-12 py-16">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             <div>
-              <h4 className="text-crisp font-display text-lg tracking-wide mb-4">
-                ENVY
-              </h4>
+              <div className="flex items-center gap-3 mb-4">
+                <Diamond className="w-5 h-5 text-champagne" />
+                <h4 className="text-crisp font-display text-lg tracking-wide">
+                  ENVY
+                </h4>
+              </div>
               <p className="text-silver-light text-sm leading-relaxed max-w-sm">
                 Curated luxury stays across South Africa&apos;s most
                 sought-after locations. Clifton. Camps Bay. Sandton.
