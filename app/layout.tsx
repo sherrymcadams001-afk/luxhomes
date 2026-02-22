@@ -3,6 +3,8 @@ import "./globals.css";
 import { StoreProvider } from "@/lib/store";
 import Navigation from "@/components/Navigation";
 
+export const runtime = "edge";
+
 const SITE_URL = "https://envyhomes.co.za";
 const SITE_NAME = "ENVY Luxury Homes";
 const SITE_TITLE = "ENVY Luxury Homes — Ultra-Luxury South African Real Estate";
