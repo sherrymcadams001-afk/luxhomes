@@ -1,6 +1,6 @@
 # ENVY Luxury Homes
 
-Ultra-luxury South African real estate platform — Safari Noir & Cape Elegance.
+Ultra-luxury South Africa real estate platform — Safari Noir & Cape Elegance.
 
 ## Stack
 
