@@ -96,6 +96,7 @@ export default function RootLayout({
         <meta name="theme-color" content="#070D18" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <link rel="preload" href="/vid.mp4" as="video" type="video/mp4" />
       </head>
       <body className="min-h-screen bg-void text-crisp antialiased grain-overlay overflow-x-hidden">
         <StoreProvider>
@@ -137,8 +138,8 @@ function Footer() {
                 ENVY
               </h4>
               <p className="text-silver-light text-sm leading-relaxed max-w-sm">
-                South Africa&apos;s preeminent curator of ultra-luxury residential
-                experiences. Clifton. Camps Bay. Sandton.
+                Curated luxury stays across South Africa&apos;s most
+                sought-after locations. Clifton. Camps Bay. Sandton.
               </p>
             </div>
             <div>

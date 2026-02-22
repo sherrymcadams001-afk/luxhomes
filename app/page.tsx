@@ -55,6 +55,7 @@ export default function HomePage() {
   const featured = properties.slice(0, 3);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [videoPaused, setVideoPaused] = useState(false);
+  const [videoReady, setVideoReady] = useState(false);
   const isVideo = heroMode === "video";
 
   const toggleVideo = () => {
@@ -73,21 +74,29 @@ export default function HomePage() {
       {/* ─── Hero Section with Video ───────────────────────────── */}
       <section className="relative h-[100dvh] -mt-[72px] flex items-center justify-center overflow-hidden">
         {/* Hero Background — Video or Image (admin-controlled) */}
-        <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-void">
           {isVideo ? (
-            <video
-              ref={videoRef}
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="auto"
-              poster={HERO_IMAGE}
-              className="absolute inset-0 w-full h-full object-cover scale-105"
-            >
-              <source src="/vid.mp4" type="video/mp4" />
-              <source src={HERO_VIDEO_FALLBACK} type="video/mp4" />
-            </video>
+            <>
+              {/* Dark background until video is ready */}
+              {!videoReady && (
+                <div className="absolute inset-0 bg-void z-[1]" />
+              )}
+              <video
+                ref={videoRef}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="auto"
+                onCanPlay={() => setVideoReady(true)}
+                className={`absolute inset-0 w-full h-full object-cover scale-105 transition-opacity duration-700 ${
+                  videoReady ? "opacity-100" : "opacity-0"
+                }`}
+              >
+                <source src="/vid.mp4" type="video/mp4" />
+                <source src={HERO_VIDEO_FALLBACK} type="video/mp4" />
+              </video>
+            </>
           ) : (
             <div
               className="absolute inset-0 w-full h-full bg-cover bg-center scale-105"
@@ -181,8 +190,12 @@ export default function HomePage() {
       </section>
 
       {/* ─── Trust Pillars ─────────────────────────────────────── */}
-      <section className="relative border-y lux-border-warm lux-section-elevated bg-navy/80">
-        {/* Subtle warm ambient glow */}
+      <section className="relative border-b lux-border-warm lux-section-elevated bg-navy/80">
+        {/* Seamless top blend from hero */}
+        <div
+          className="absolute inset-x-0 top-0 h-16 pointer-events-none"
+          style={{ background: "linear-gradient(to bottom, #070D18, transparent)" }}
+        />
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
