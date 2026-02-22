@@ -3,10 +3,19 @@ import "./globals.css";
 import { StoreProvider } from "@/lib/store";
 import Navigation from "@/components/Navigation";
 
+const SITE_URL = "https://envyhomes.co.za";
+const SITE_NAME = "ENVY Luxury Homes";
+const SITE_TITLE = "ENVY Luxury Homes — Ultra-Luxury South African Real Estate";
+const SITE_DESCRIPTION =
+  "Covet the exceptional. South Africa's most exclusive luxury estates in Clifton, Camps Bay, and Sandton. Private viewings by appointment.";
+
 export const metadata: Metadata = {
-  title: "ENVY Luxury Homes — Ultra-Luxury South African Real Estate",
-  description:
-    "Covet the exceptional. South Africa's most exclusive luxury estates in Clifton, Camps Bay, and Sandton.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: SITE_TITLE,
+    template: `%s | ${SITE_NAME}`,
+  },
+  description: SITE_DESCRIPTION,
   keywords: [
     "luxury homes",
     "South Africa",
@@ -16,7 +25,61 @@ export const metadata: Metadata = {
     "real estate",
     "villa",
     "estate",
+    "luxury rental",
+    "Cape Town",
+    "Johannesburg",
+    "ultra luxury",
+    "penthouse",
+    "exclusive property",
   ],
+  authors: [{ name: SITE_NAME }],
+  creator: SITE_NAME,
+  publisher: SITE_NAME,
+  formatDetection: {
+    email: false,
+    telephone: false,
+    address: false,
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_ZA",
+    url: SITE_URL,
+    siteName: SITE_NAME,
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    creator: "@envyluxuryhomes",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  // WhatsApp and iMessage use OG tags above; these additional entries cover edge cases
+  other: {
+    "og:locale": "en_ZA",
+    "og:site_name": SITE_NAME,
+    "og:type": "website",
+    "mobile-web-app-capable": "yes",
+    "msapplication-TileColor": "#070D18",
+  },
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    apple: "/apple-icon",
+  },
+  manifest: "/manifest.webmanifest",
 };
 
 export default function RootLayout({
