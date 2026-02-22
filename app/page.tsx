@@ -81,6 +81,7 @@ export default function HomePage() {
               muted
               loop
               playsInline
+              preload="auto"
               poster={HERO_IMAGE}
               className="absolute inset-0 w-full h-full object-cover scale-105"
             >
@@ -194,18 +195,18 @@ export default function HomePage() {
             {[
               {
                 icon: Shield,
-                title: "Vault-Grade Security",
-                desc: "Biometric access, 24/7 armed response, and military-grade surveillance at every estate.",
+                title: "Secure Estates",
+                desc: "Gated access, monitored perimeters, and 24-hour on-site security across our portfolio.",
               },
               {
                 icon: Eye,
                 title: "Private Viewings",
-                desc: "Helicopter transfers, chauffeured arrivals, and bespoke walkthroughs at your convenience.",
+                desc: "Personalised property tours arranged at your convenience with our dedicated team.",
               },
               {
                 icon: Compass,
-                title: "Full Concierge",
-                desc: "Private chefs, yacht charters, safari bookings — our service transforms stays into narratives.",
+                title: "Concierge Support",
+                desc: "From dining reservations to day-trip planning — our team is on hand to curate your stay.",
               },
             ].map((item, i) => (
               <motion.div

@@ -77,9 +77,8 @@ export default function CollectionPage() {
                   Available Estates
                 </h1>
                 <p className="text-silver-light text-sm mt-3 max-w-lg">
-                  Each residence has been selected for its architectural
-                  distinction, location prestige, and capacity to deliver an
-                  extraordinary lifestyle.
+                  Each residence has been selected for its prime location,
+                  quality finishes, and ability to provide a memorable stay.
                 </p>
               </div>
 

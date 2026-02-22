@@ -234,13 +234,13 @@ export default function PropertyDetailPage() {
                   </h3>
                   <div className="grid grid-cols-2 gap-3">
                     {[
-                      "Infinity Pool",
-                      "Private Cinema",
-                      "Wine Cellar",
+                      "Pool",
+                      "Entertainment Area",
+                      "Secure Parking",
                       "Smart Home",
                       "24/7 Security",
-                      "Helipad Access",
-                      "Staff Quarters",
+                      "Garden & Terrace",
+                      "Air Conditioning",
                       "Gym & Spa",
                     ].map((amenity) => (
                       <div

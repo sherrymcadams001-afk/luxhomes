@@ -301,10 +301,9 @@ export default function ContactPage() {
 
             <div className="border-t border-white/[0.06] pt-8">
               <p className="text-silver text-xs leading-relaxed">
-                For urgent matters outside office hours, our 24/7 guest
-                assistance line is available for confirmed bookings. Priority
-                response is guaranteed for all enquiries submitted through this
-                form.
+                For urgent matters outside office hours, please leave a message
+                and we will respond as soon as possible. All enquiries submitted
+                through this form receive a response within 24 hours.
               </p>
             </div>
           </motion.div>

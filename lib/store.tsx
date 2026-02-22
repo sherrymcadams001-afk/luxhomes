@@ -57,7 +57,7 @@ const SEED_PROPERTIES: Property[] = [
       "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1200&q=80",
     ],
     description:
-      "Perched above Clifton's pristine First Beach, Villa Aurelia is a monument to understated opulence. Floor-to-ceiling glass dissolves the boundary between the Atlantic Ocean and your private sanctuary. Every surface — from the Italian Calacatta marble to the hand-oiled European oak — has been selected for its capacity to age with unparalleled grace.",
+      "Set above Clifton's renowned First Beach, Villa Aurelia offers sweeping Atlantic views through expansive windows. Premium finishes and open-plan living spaces create a refined coastal retreat designed for comfort and privacy.",
     bedrooms: 6,
     bathrooms: 7,
     size: 1200,
@@ -74,7 +74,7 @@ const SEED_PROPERTIES: Property[] = [
       "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=1200&q=80",
     ],
     description:
-      "Carved into the granite spine of the Twelve Apostles, The Obsidian commands panoramic dominion over Camps Bay. Its cantilevered infinity pool appears to pour directly into the ocean below. The interior is a dialogue between raw concrete, blackened steel, and the warm glow of Karoo dusk.",
+      "Nestled along the Camps Bay ridge with uninterrupted mountain and ocean views, The Obsidian pairs contemporary design with natural textures. An infinity pool, open-plan interiors, and generous terraces make the most of the setting.",
     bedrooms: 5,
     bathrooms: 5,
     size: 980,
@@ -91,7 +91,7 @@ const SEED_PROPERTIES: Property[] = [
       "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1200&q=80",
     ],
     description:
-      "In the golden heart of Sandton, Maison Éternelle is a private world. Behind its fortified perimeter lies a realm of manicured indigenous gardens, a subterranean wine vault, and a rooftop observatory. The architecture fuses contemporary minimalism with African materiality — think rammed earth walls meeting Venetian plaster.",
+      "Located in the heart of Sandton, Maison Éternelle combines modern architecture with landscaped gardens and generous entertaining spaces. A secure, private estate ideal for families or executive retreats.",
     bedrooms: 8,
     bathrooms: 9,
     size: 1850,
@@ -108,7 +108,7 @@ const SEED_PROPERTIES: Property[] = [
       "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1200&q=80",
     ],
     description:
-      "The crown jewel of the Clifton collection. Seraph House is an architectural provocation — a series of interlocking glass pavilions that cascade down the cliff face. The private funicular delivers you from your motor court to the beach in 40 seconds. Staff quarters, helipad, and a 20-metre lap pool are standard amenities.",
+      "A striking Clifton residence with layered living areas that follow the coastline. Seraph House features a private pool, direct beach proximity, and panoramic views — one of the most sought-after positions on the Atlantic Seaboard.",
     bedrooms: 7,
     bathrooms: 8,
     size: 1500,
@@ -125,7 +125,7 @@ const SEED_PROPERTIES: Property[] = [
       "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80",
     ],
     description:
-      "Onda's undulating roofline, inspired by the Atlantic swells it overlooks, is the most photographed piece of residential architecture in the Western Cape. Inside, the open-plan living space flows like water itself — seamless transitions between lounge, dining, and the outdoor terrace. This is where design ambition meets the discipline of restraint.",
+      "Onda sits right on the Camps Bay beachfront with a distinctive contemporary design. Fluid open-plan living connects indoor and outdoor entertaining areas, with the beach just steps away.",
     bedrooms: 4,
     bathrooms: 4,
     size: 750,
@@ -142,7 +142,7 @@ const SEED_PROPERTIES: Property[] = [
       "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1200&q=80",
     ],
     description:
-      "Named after the Tswana word for 'king,' Kgosi Manor presides over three acres of manicured highveld parkland. Its double-volume entrance hall, anchored by a spiralling bronze staircase, sets the tone for an estate designed to host, to impress, and to endure. The library, the cigar lounge, the private screening room — every space has been composed for a life of consequence.",
+      "A grand Sandhurst estate set on expansive grounds with manicured gardens. Kgosi Manor offers generous living and entertaining spaces, multiple bedroom suites, and the privacy expected of Johannesburg's most prestigious address.",
     bedrooms: 10,
     bathrooms: 12,
     size: 2200,

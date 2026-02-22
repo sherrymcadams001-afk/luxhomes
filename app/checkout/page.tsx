@@ -104,9 +104,9 @@ export default function CheckoutPage() {
 
               <div className="flex flex-col items-center gap-3">
                 {[
-                  "Encrypting transaction...",
-                  "Securing vault channel...",
-                  "Verifying credentials...",
+                  "Processing transaction...",
+                  "Securing payment channel...",
+                  "Verifying details...",
                   "Redirecting to payment gateway...",
                 ].map((text, i) => (
                   <motion.div
