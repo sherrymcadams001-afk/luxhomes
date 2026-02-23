@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Shield,
@@ -10,6 +10,7 @@ import {
   CreditCard,
   ArrowLeft,
   AlertTriangle,
+  XCircle,
 } from "lucide-react";
 import Link from "next/link";
 import { useStore, formatZAR } from "@/lib/store";
@@ -21,12 +22,21 @@ const PAYFAST_LIVE_URL = "https://www.payfast.co.za/eng/process";
 
 export default function CheckoutPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { currentBooking, payfast } = useStore();
   const [vaultLocking, setVaultLocking] = useState(false);
   const [lockPhase, setLockPhase] = useState(0);
+  const [cancelled, setCancelled] = useState(false);
+
+  // Handle PayFast cancellation return
+  useEffect(() => {
+    if (searchParams.get("payment") === "cancelled") {
+      setCancelled(true);
+    }
+  }, [searchParams]);
 
   useEffect(() => {
-    if (!currentBooking) {
+    if (!currentBooking && !cancelled) {
       router.push("/");
     }
   }, [currentBooking, router]);
@@ -169,6 +179,23 @@ export default function CheckoutPage() {
       </div>
 
       <div className="max-w-[900px] mx-auto px-6 py-12 lg:py-16">
+        {/* Cancellation Banner */}
+        {cancelled && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="flex items-start gap-3 p-4 mb-8 border border-amber-500/20 bg-amber-500/[0.04]"
+          >
+            <XCircle size={18} className="text-amber-400 mt-0.5 flex-shrink-0" />
+            <div>
+              <p className="text-silver-light text-sm font-medium mb-1">Payment was cancelled</p>
+              <p className="text-silver text-[12px] leading-relaxed">
+                Your reservation is still held. You can try again when you&apos;re ready.
+              </p>
+            </div>
+          </motion.div>
+        )}
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -395,7 +422,7 @@ export default function CheckoutPage() {
                     name="return_url"
                     value={
                       typeof window !== "undefined"
-                        ? `${window.location.origin}/?payment=success`
+                        ? `${window.location.origin}/booking-confirmed?payment=success`
                         : ""
                     }
                   />

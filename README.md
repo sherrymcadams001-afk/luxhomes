@@ -26,6 +26,7 @@ Open [http://localhost:3000](http://localhost:3000).
 | `/` | Public showroom — hero + property collection grid |
 | `/properties/[id]` | Property detail — gallery + booking widget |
 | `/checkout` | Secure checkout with PayFast integration |
+| `/booking-confirmed` | Post-payment confirmation with booking reference |
 | `/admin` | Concierge dashboard (PIN: `2727`) — manage properties, bookings & PayFast settings |
 
 ## Data Persistence
