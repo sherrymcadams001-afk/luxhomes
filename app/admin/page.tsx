@@ -20,8 +20,11 @@ import {
   Settings,
   Film,
   Image,
+  CreditCard,
+  Shield,
+  ExternalLink,
 } from "lucide-react";
-import { useStore, formatZAR, type Property, type HeroMode } from "@/lib/store";
+import { useStore, formatZAR, type Property, type HeroMode, type PayFastConfig } from "@/lib/store";
 
 const spring = { type: "spring" as const, stiffness: 60, damping: 20 };
 const ADMIN_PIN = "2727";
@@ -842,7 +845,21 @@ function BookingsTab() {
 // ═══════════════════════════════════════════════════════════════
 
 function SettingsTab() {
-  const { heroMode, setHeroMode } = useStore();
+  const { heroMode, setHeroMode, payfast, setPayFastConfig } = useStore();
+  const [saved, setSaved] = useState(false);
+  const [showKey, setShowKey] = useState(false);
+  const [showPassphrase, setShowPassphrase] = useState(false);
+
+  const handlePayFastChange = (field: keyof PayFastConfig, value: string | boolean) => {
+    setPayFastConfig({ [field]: value });
+  };
+
+  const handleSave = () => {
+    setSaved(true);
+    setTimeout(() => setSaved(false), 2500);
+  };
+
+  const isConfigured = payfast.merchantId.trim() !== "" && payfast.merchantKey.trim() !== "";
 
   const modes: { id: HeroMode; label: string; description: string; icon: typeof Film }[] = [
     {
@@ -865,9 +882,172 @@ function SettingsTab() {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -10 }}
       transition={spring}
+      className="space-y-8 max-w-2xl"
     >
-      <div className="lux-card p-6 sm:p-8 max-w-2xl">
-        <h3 className="text-[10px] tracking-[0.3em] uppercase text-champagne/70 mb-6">
+      {/* ─── PayFast Integration ────────────────────────── */}
+      <div className="lux-card p-6 sm:p-8">
+        <div className="flex items-center gap-3 mb-6">
+          <CreditCard size={16} className="text-champagne" />
+          <h3 className="text-[11px] tracking-[0.25em] uppercase text-champagne/80">
+            PayFast Integration
+          </h3>
+          <div className={`ml-auto px-2.5 py-1 text-[10px] tracking-wider uppercase border ${
+            isConfigured
+              ? "border-green-500/30 text-green-400 bg-green-500/5"
+              : "border-amber-500/30 text-amber-400 bg-amber-500/5"
+          }`}>
+            {isConfigured ? "Configured" : "Not Set Up"}
+          </div>
+        </div>
+
+        <p className="text-silver text-sm leading-relaxed mb-6">
+          Enter your PayFast merchant credentials below. You can find these in your{" "}
+          <a
+            href="https://www.payfast.co.za/dashboard"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-champagne hover:text-champagne-light underline underline-offset-2 inline-flex items-center gap-1"
+          >
+            PayFast Dashboard
+            <ExternalLink size={11} />
+          </a>{" "}
+          under Settings → Merchant Settings.
+        </p>
+
+        <div className="space-y-5">
+          {/* Sandbox / Live Toggle */}
+          <div className="flex items-center gap-4 p-4 border border-white/[0.06] bg-navy-light/30">
+            <Shield size={16} className={payfast.sandbox ? "text-amber-400" : "text-green-400"} />
+            <div className="flex-1">
+              <div className="text-sm text-silver-light font-medium">
+                {payfast.sandbox ? "Sandbox Mode" : "Live Mode"}
+              </div>
+              <div className="text-[11px] text-silver/60 mt-0.5">
+                {payfast.sandbox
+                  ? "Test transactions only — no real charges"
+                  : "Real transactions — customers will be charged"}
+              </div>
+            </div>
+            <button
+              onClick={() => handlePayFastChange("sandbox", !payfast.sandbox)}
+              className={`relative w-12 h-6 rounded-full transition-colors duration-300 ${
+                payfast.sandbox ? "bg-amber-500/30" : "bg-green-500/30"
+              }`}
+              aria-label={`Switch to ${payfast.sandbox ? "live" : "sandbox"} mode`}
+            >
+              <div
+                className={`absolute top-0.5 w-5 h-5 rounded-full transition-all duration-300 ${
+                  payfast.sandbox
+                    ? "left-0.5 bg-amber-400"
+                    : "left-[calc(100%-22px)] bg-green-400"
+                }`}
+              />
+            </button>
+          </div>
+
+          {/* Merchant ID */}
+          <div>
+            <label htmlFor="pf-merchant-id" className="block text-[11px] tracking-[0.25em] uppercase text-champagne/80 mb-2">
+              Merchant ID
+            </label>
+            <input
+              id="pf-merchant-id"
+              type="text"
+              value={payfast.merchantId}
+              onChange={(e) => handlePayFastChange("merchantId", e.target.value)}
+              placeholder="e.g. 10000100"
+              className="lux-input font-mono tabular-nums"
+            />
+          </div>
+
+          {/* Merchant Key */}
+          <div>
+            <label htmlFor="pf-merchant-key" className="block text-[11px] tracking-[0.25em] uppercase text-champagne/80 mb-2">
+              Merchant Key
+            </label>
+            <div className="relative">
+              <input
+                id="pf-merchant-key"
+                type={showKey ? "text" : "password"}
+                value={payfast.merchantKey}
+                onChange={(e) => handlePayFastChange("merchantKey", e.target.value)}
+                placeholder="e.g. 46f0cd694581a"
+                className="lux-input font-mono tabular-nums pr-12"
+              />
+              <button
+                type="button"
+                onClick={() => setShowKey(!showKey)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-silver/40 hover:text-silver transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center -mr-3"
+                aria-label={showKey ? "Hide merchant key" : "Show merchant key"}
+              >
+                {showKey ? <EyeOff size={15} /> : <Eye size={15} />}
+              </button>
+            </div>
+          </div>
+
+          {/* Passphrase (optional) */}
+          <div>
+            <label htmlFor="pf-passphrase" className="block text-[11px] tracking-[0.25em] uppercase text-champagne/80 mb-2">
+              Passphrase <span className="text-silver/50 normal-case tracking-normal">(optional)</span>
+            </label>
+            <div className="relative">
+              <input
+                id="pf-passphrase"
+                type={showPassphrase ? "text" : "password"}
+                value={payfast.passphrase}
+                onChange={(e) => handlePayFastChange("passphrase", e.target.value)}
+                placeholder="Your PayFast passphrase"
+                className="lux-input pr-12"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassphrase(!showPassphrase)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-silver/40 hover:text-silver transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center -mr-3"
+                aria-label={showPassphrase ? "Hide passphrase" : "Show passphrase"}
+              >
+                {showPassphrase ? <EyeOff size={15} /> : <Eye size={15} />}
+              </button>
+            </div>
+            <p className="text-silver/40 text-[10px] mt-1.5">
+              Required if you have set a passphrase in your PayFast dashboard.
+            </p>
+          </div>
+
+          {/* Save Button */}
+          <button
+            onClick={handleSave}
+            className="lux-button-primary"
+          >
+            {saved ? (
+              <>
+                <CheckCircle size={14} />
+                Saved
+              </>
+            ) : (
+              <>
+                <Save size={14} />
+                Save PayFast Settings
+              </>
+            )}
+          </button>
+        </div>
+
+        {!isConfigured && (
+          <div className="flex items-start gap-3 mt-6 p-4 border border-amber-500/15 bg-amber-500/[0.03]">
+            <AlertCircle size={14} className="text-amber-400 mt-0.5 flex-shrink-0" />
+            <p className="text-silver text-[12px] leading-relaxed">
+              Checkout is disabled until you enter your Merchant ID and Key.
+              For testing, use PayFast sandbox credentials:
+              ID <code className="text-champagne font-mono">10000100</code>,
+              Key <code className="text-champagne font-mono">46f0cd694581a</code>.
+            </p>
+          </div>
+        )}
+      </div>
+
+      {/* ─── Hero Section ──────────────────────────────── */}
+      <div className="lux-card p-6 sm:p-8">
+        <h3 className="text-[11px] tracking-[0.25em] uppercase text-champagne/80 mb-6">
           Hero Section
         </h3>
 

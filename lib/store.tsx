@@ -42,6 +42,20 @@ export interface Booking {
   status: "pending" | "confirmed" | "cancelled";
 }
 
+export interface PayFastConfig {
+  merchantId: string;
+  merchantKey: string;
+  passphrase: string;
+  sandbox: boolean;
+}
+
+const DEFAULT_PAYFAST: PayFastConfig = {
+  merchantId: "",
+  merchantKey: "",
+  passphrase: "",
+  sandbox: true,
+};
+
 // ─── Seed Data ──────────────────────────────────────────────────────────────
 
 const SEED_PROPERTIES: Property[] = [
@@ -158,6 +172,7 @@ interface StoreState {
   bookings: Booking[];
   currentBooking: Booking | null;
   heroMode: HeroMode;
+  payfast: PayFastConfig;
 }
 
 interface StoreActions {
@@ -169,6 +184,7 @@ interface StoreActions {
   updateBookingStatus: (id: string, status: Booking["status"]) => void;
   setCurrentBooking: (booking: Booking | null) => void;
   setHeroMode: (mode: HeroMode) => void;
+  setPayFastConfig: (config: Partial<PayFastConfig>) => void;
   resetStore: () => void;
 }
 
@@ -181,6 +197,7 @@ const defaultState: StoreState = {
   bookings: [],
   currentBooking: null,
   heroMode: "video",
+  payfast: DEFAULT_PAYFAST,
 };
 
 // ─── Context ────────────────────────────────────────────────────────────────
@@ -213,6 +230,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
           bookings: parsed.bookings || [],
           currentBooking: parsed.currentBooking || null,
           heroMode: parsed.heroMode || "video",
+          payfast: parsed.payfast ? { ...DEFAULT_PAYFAST, ...parsed.payfast } : DEFAULT_PAYFAST,
         });
       }
     } catch {
@@ -302,6 +320,10 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     setState((prev) => ({ ...prev, heroMode: mode }));
   }, []);
 
+  const setPayFastConfig = useCallback((config: Partial<PayFastConfig>) => {
+    setState((prev) => ({ ...prev, payfast: { ...prev.payfast, ...config } }));
+  }, []);
+
   const resetStore = useCallback(() => {
     localStorage.removeItem(STORAGE_KEY);
     setState(defaultState);
@@ -317,6 +339,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     updateBookingStatus,
     setCurrentBooking,
     setHeroMode,
+    setPayFastConfig,
     resetStore,
   };
 

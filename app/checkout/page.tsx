@@ -16,14 +16,12 @@ import { useStore, formatZAR } from "@/lib/store";
 
 const spring = { type: "spring" as const, stiffness: 60, damping: 20 };
 
-// PayFast sandbox credentials — replace with live keys in production
-const PAYFAST_MERCHANT_ID = "10000100";
-const PAYFAST_MERCHANT_KEY = "46f0cd694581a";
 const PAYFAST_SANDBOX_URL = "https://sandbox.payfast.co.za/eng/process";
+const PAYFAST_LIVE_URL = "https://www.payfast.co.za/eng/process";
 
 export default function CheckoutPage() {
   const router = useRouter();
-  const { currentBooking } = useStore();
+  const { currentBooking, payfast } = useStore();
   const [vaultLocking, setVaultLocking] = useState(false);
   const [lockPhase, setLockPhase] = useState(0);
 
@@ -47,6 +45,9 @@ export default function CheckoutPage() {
       </div>
     );
   }
+
+  const payfastConfigured = payfast.merchantId.trim() !== "" && payfast.merchantKey.trim() !== "";
+  const payfastUrl = payfast.sandbox ? PAYFAST_SANDBOX_URL : PAYFAST_LIVE_URL;
 
   const serviceFee = Math.round(currentBooking.totalCost * 0.05);
   const levyVat = Math.round(currentBooking.totalCost * 0.15);
@@ -337,7 +338,7 @@ export default function CheckoutPage() {
 
                 {/* PayFast Form */}
                 <form
-                  action={PAYFAST_SANDBOX_URL}
+                  action={payfastUrl}
                   method="POST"
                   onSubmit={handleSubmit}
                 >
@@ -345,12 +346,12 @@ export default function CheckoutPage() {
                   <input
                     type="hidden"
                     name="merchant_id"
-                    value={PAYFAST_MERCHANT_ID}
+                    value={payfast.merchantId}
                   />
                   <input
                     type="hidden"
                     name="merchant_key"
-                    value={PAYFAST_MERCHANT_KEY}
+                    value={payfast.merchantKey}
                   />
                   <input
                     type="hidden"
@@ -420,12 +421,29 @@ export default function CheckoutPage() {
                   <button
                     type="submit"
                     className="lux-button-primary w-full"
-                    disabled={vaultLocking}
+                    disabled={vaultLocking || !payfastConfigured}
                   >
                     <Lock size={14} />
-                    {vaultLocking ? "Securing Vault..." : "Pay Securely via PayFast"}
+                    {!payfastConfigured
+                      ? "Payment Not Configured"
+                      : vaultLocking
+                      ? "Securing Vault..."
+                      : "Pay Securely via PayFast"}
                   </button>
                 </form>
+
+                {!payfastConfigured && (
+                  <div className="flex items-start gap-2 mt-4 p-3 border border-amber-500/15 bg-amber-500/[0.03]">
+                    <AlertTriangle size={13} className="text-amber-400 mt-0.5 flex-shrink-0" />
+                    <p className="text-silver text-[11px] leading-relaxed">
+                      PayFast credentials have not been configured. The admin needs to enter them in the{" "}
+                      <Link href="/admin" className="text-champagne underline underline-offset-2">
+                        admin dashboard
+                      </Link>{" "}
+                      under Settings.
+                    </p>
+                  </div>
+                )}
 
                 <div className="flex items-center justify-center gap-4 mt-6 pt-4 border-t border-white/[0.06]">
                   <span className="text-[10px] tracking-[0.2em] uppercase text-silver/50">
